@@ -1,0 +1,6 @@
+boto3==1.33.10
+Flask==2.0.2
+pandas==1.5.1
+requests==2.28.1
+gunicorn
+Werkzeug==2.2.2

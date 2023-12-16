@@ -1,17 +1,22 @@
 from flask import Flask, request, jsonify
-
+import pandas as pd
 
 app = Flask(__name__)
 
+@app.route('/api/process_dataframe', methods=['POST'])
+def process_dataframe():
+    try:
+        # Assuming the request contains a valid JSON payload with the DataFrame
+        data = request.json
+        df = pd.DataFrame(data)
 
-@app.route('/api/test', methods=['POST'])
-def test_api():
-    data = request.json  # Assuming the request contains a valid JSON payload
-    if 'poopjelly' in data:
-        return jsonify({"message": f"Received 'poopjelly' with value: {data['poopjelly']}"})
-    else:
-        return jsonify({"error": "The key 'poopjelly' is missing in the JSON payload"}), 400
+        # Print the DataFrame
+        print("Received DataFrame:")
+        print(df)
 
+        return jsonify({"message": "DataFrame received and printed successfully"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

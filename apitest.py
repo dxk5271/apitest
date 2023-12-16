@@ -14,7 +14,8 @@ def process_dataframe():
         print("Received DataFrame:")
         print(df)
 
-        return jsonify({"message": "DataFrame received and printed successfully"})
+        # Return the DataFrame as JSON
+        return jsonify(df.to_dict(orient='records'))
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 

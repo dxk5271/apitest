@@ -8,7 +8,9 @@ def process_dataframe():
     try:
         # Assuming the request contains a valid JSON payload with the DataFrame
         data = request.json
-        df = pd.DataFrame(data)
+
+        # Explicitly provide an index when constructing the DataFrame
+        df = pd.DataFrame([data], index=[0])
 
         # Print the DataFrame
         print("Received DataFrame:")

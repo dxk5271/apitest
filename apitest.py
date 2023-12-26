@@ -10,7 +10,7 @@ def process_dataframe():
         data = request.json
 
         # Explicitly provide an index when constructing the DataFrame
-        df = pd.DataFrame([data], index=[0])
+        df = pd.DataFrame([data])
 
         # Print the DataFrame
         print("Received DataFrame:")

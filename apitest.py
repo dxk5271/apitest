@@ -5,21 +5,23 @@ app = Flask(__name__)
 
 @app.route('/api/process_dataframe', methods=['POST'])
 def process_dataframe():
+
     try:
-        # Assuming the request contains a valid JSON payload with the DataFrame
         data = request.json
 
-        # Explicitly provide an index when constructing the DataFrame
-        df = pd.DataFrame([data])
 
-        # Print the DataFrame
-        print("Received DataFrame:")
+        # Create DataFrame directly from the list of dictionaries
+        df = pd.DataFrame(data)
         print(df)
 
-        # Return the DataFrame as JSON
+        # Log the DataFrame instead of printing
+      
+
         return jsonify(df.to_dict(orient='records'))
     except Exception as e:
+        app.logger.error(f"Error processing DataFrame: {str(e)}")
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)
+
